@@ -3,15 +3,15 @@
 
 #include <iostream>
 
-GameState::GameState(sf::RenderWindow& window, KeyBinding& keyBindings, ResourceHolder<sf::Font, std::string>& fonts, ResourceHolder<sf::Texture, std::string>& textures, StateStack& stack)
-	: State{ window, keyBindings, fonts, textures, stack }
+GameState::GameState(SharedContext context, KeyBinding& keyBindings, StateStack& stack)
+	: State{ context, keyBindings, stack }, m_player{ context.m_texturesPtr->getResource("player_knight") }
 {
 }
 
 
 void GameState::draw()
 {
-	m_player.draw(m_windowContext);
+	m_player.draw(*m_context.m_windowPtr);
 }
 
 bool GameState::update(sf::Time dt)
@@ -30,7 +30,13 @@ bool GameState::handleEvent(const sf::Event& event)
 
 	// Escape pressed => pause game
 	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-		requestStackPush(std::make_unique<PauseState>(m_windowContext, m_keyBindingContext, m_fontsContext, m_texturesContext, m_stackContext));
+		requestStackPush(std::make_unique<PauseState>(SharedContext{ m_context.m_windowPtr,  m_context.m_texturesPtr, m_context.m_fontsPtr }, m_keyBindingContext, m_stackContext));
 
 	return true; // TODO: CHECK IF NEEDED??
+}
+
+
+void GameState::initGameObjects()
+{
+
 }
