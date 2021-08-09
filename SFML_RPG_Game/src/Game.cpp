@@ -3,11 +3,13 @@
 #include "states/MainMenuState.h"
 #include "Constants.h"
 
+#include <fstream>
 #include <iostream>
 
 Game::Game()
-	: m_window{ sf::VideoMode{ constants::SCR_WIDTH, constants::SCR_HEIGHT }, "SFML_RPG_GAME" }
+	//: m_window{"config/window.init"}
 {
+	initWindow("config/window.init");
 	m_window.setVerticalSyncEnabled(true);
 
 	// TODO: set anti aliasing level??
@@ -19,6 +21,7 @@ Game::Game()
 	loadFonts();
 	loadTextures();
 	initStates();
+
 }
 
 // run the game
@@ -81,11 +84,31 @@ void Game::render()
 //}
 
 
+void Game::initWindow(const std::string& filename)
+{
+	std::ifstream ifs(filename);
+
+	unsigned width{ 0 }, height{ 0 };
+	std::string title;
+
+	if (!ifs.is_open())
+		std::cerr << "Failed to read from window config file " << filename << '\n';
+	else
+	{
+		std::getline(ifs, title);
+		ifs >> width >> height;
+
+	}
+
+	ifs.close();
+	m_window.create(sf::VideoMode{ width, height }, title);
+}
+
 // push states to state stack
 void Game::initStates()
 {
-	m_stateStack.pushState(std::make_unique<GameState>(m_window, m_keyBindings, m_fonts, m_textures, m_stateStack));
-	m_stateStack.pushState(std::make_unique<MainMenuState>(m_window, m_keyBindings, m_fonts, m_textures, m_stateStack));
+	m_stateStack.pushState(std::make_unique<GameState>(SharedContext{ &m_window, &m_textures, &m_fonts }, m_keyBindings, m_stateStack));
+	m_stateStack.pushState(std::make_unique<MainMenuState>(SharedContext{ &m_window, &m_textures, &m_fonts }, m_keyBindings, m_stateStack));
 }
 
 
@@ -97,5 +120,8 @@ void Game::loadFonts()
 
 void Game::loadTextures()
 {
-	m_textures.load("main_menu_background", "assets/images/background.jpg");
+	m_textures.load("main_menu_background", "assets/images/background.jpg"); // TODO: should be texture?? or image??
+	m_textures.load("player_knight", "assets/textures/knight2.jpg");
+
+
 }
