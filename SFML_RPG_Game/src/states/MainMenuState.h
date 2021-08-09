@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../components/Component.h"
-#include "../components/Button.h"
+#include "../ui_objects/UIObject.h"
+#include "../ui_objects/Button.h"
 #include "State.h"
 
 #include <map>
@@ -10,7 +10,7 @@
 class MainMenuState : public State
 {
 public:
-	MainMenuState(sf::RenderWindow& window, KeyBinding& keyBindings, ResourceHolder<sf::Font, std::string>& fonts, ResourceHolder<sf::Texture, std::string>& textures, StateStack& stack);
+	MainMenuState(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 
 	virtual void draw()								 override;
 	virtual bool update(sf::Time dt)				 override;
@@ -24,12 +24,11 @@ private:
 
 
 private:
-	sf::RectangleShape m_background; // TODO: remove... 
-	sf::Sprite m_backgroundSprite;
+	sf::Sprite m_background;
 
 
-	std::map<std::string, std::unique_ptr<Component>> m_uiComponents;
-	//std::vector<std::unique_ptr<Component>> m_uiComponents; // Make own class, or map instead?? 
+	std::map<std::string, std::unique_ptr<UIObject>> m_uiComponents;
+	//std::vector<std::unique_ptr<UIObject>> m_uiComponents; // Make own class, or map instead?? 
 
 };
 
