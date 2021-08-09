@@ -2,6 +2,14 @@
 
 #include "components/Movement.h"
 
+
+GameObject::GameObject(GameObject&& other) noexcept
+	: m_components{ std::move(other.m_components) }
+{
+	other.m_components.clear(); // NEEDED??
+}
+
+
 //GameObject::GameObject(const sf::Texture& texture, const sf::Vector2f& startPos)
 //	: m_sprite{ texture }//, m_position{ startPos }
 //{
@@ -29,11 +37,6 @@ void GameObject::removeComponent(ComponentType type)
 
 
 
-//void GameObject::draw(sf::RenderTarget& target)
-//{
-//	target.draw(m_sprite);
-//}
-
 void GameObject::update(sf::Time dt)
 {
 	auto moveComp{ getComponent<Movement*>(ComponentType::Movement) };
@@ -49,7 +52,7 @@ void GameObject::update(sf::Time dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		moveComp->move(0.f, -1.f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		moveComp->move(0.f , 1.f);
+		moveComp->move(0.f, 1.f);
 
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // TODO: FIX....
 	//	move(-1.f, 0.f);
@@ -63,7 +66,3 @@ void GameObject::update(sf::Time dt)
 
 
 
-//void GameObject::setTexture(const sf::Texture& texture)
-//{
-//	m_sprite.setTexture(texture);
-//}
