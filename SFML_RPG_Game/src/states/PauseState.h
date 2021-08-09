@@ -4,7 +4,7 @@
 class PauseState : public State
 {
 public:
-	PauseState(sf::RenderWindow& window, KeyBinding& keyBindings, ResourceHolder<sf::Font, std::string>& fonts, ResourceHolder<sf::Texture, std::string>& textures, StateStack& stack);
+	PauseState(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 
 	virtual void draw()								 override;
 	virtual bool update(sf::Time dt)				 override;

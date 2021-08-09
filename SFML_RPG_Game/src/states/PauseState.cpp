@@ -1,17 +1,17 @@
 #include "PauseState.h"
 
 
-PauseState::PauseState(sf::RenderWindow& window, KeyBinding& keyBindings, ResourceHolder<sf::Font, std::string>& fonts, ResourceHolder<sf::Texture, std::string>& textures, StateStack& stack)
-	: State{ window, keyBindings, fonts, textures, stack }
+PauseState::PauseState(SharedContext context, KeyBinding& keyBindings, StateStack& stack)
+	: State{ context, keyBindings, stack }
 {
-	m_background.setSize(static_cast<sf::Vector2f>(window.getSize()));
+	m_background.setSize(static_cast<sf::Vector2f>(context.m_windowPtr->getSize()));
 	m_background.setFillColor(sf::Color::Green);
 }
 
 
 void PauseState::draw()
 {
-	m_windowContext.draw(m_background);
+	m_context.m_windowPtr->draw(m_background);
 }
 
 
