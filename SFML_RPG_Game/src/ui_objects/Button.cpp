@@ -41,7 +41,7 @@ void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 bool Button::isSelectable() const
 {
-	return false;
+	return true;
 }
 
 
@@ -70,7 +70,8 @@ void Button::handleEvent(const sf::Event& event)
 void Button::update(sf::Vector2f mousePos)
 {
 	m_state = IDLE;
-	deselect();
+	deselect();	
+
 	// Hover...
 	if (m_container.getGlobalBounds().contains(mousePos))
 	{

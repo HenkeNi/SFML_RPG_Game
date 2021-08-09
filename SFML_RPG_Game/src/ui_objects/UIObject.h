@@ -6,14 +6,14 @@
 //#include <SFML/System/NonCopyable.hpp>
 
 
-class Component : public sf::Drawable, public sf::Transformable
+class UIObject : public sf::Drawable, public sf::Transformable
 {
 public:
-	virtual ~Component() = default;
+	virtual ~UIObject() = default;
 
 	//virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	virtual bool isSelectable() const = 0;
+	virtual bool isSelectable() const = 0; // TODO: Rename clickable or something??
 	inline  bool isSelected()   const { return m_isSelected; }
 	
 	// TODO: combine to toggle() or toggleSelect() => m_isSelected = !m_isSelected;

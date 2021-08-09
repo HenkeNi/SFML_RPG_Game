@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.h"
+#include "UIObject.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>
@@ -14,7 +14,7 @@ enum ButtonState
 	IDLE, HOVER, ACTIVE // TODO: rename clicked to ACtive ???
 };
 
-class Button : public Component
+class Button : public UIObject
 {
 public:
 	Button(const sf::Font& font, const std::string& text, const sf::Vector2f& position, const sf::Vector2f& size);
