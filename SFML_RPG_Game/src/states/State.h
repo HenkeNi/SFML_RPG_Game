@@ -1,6 +1,7 @@
 #pragma once
 #include "../KeyBinding.h"
-#include "../ResourceHolder.h"
+#include "../SharedContext.h"
+//#include "../ResourceHolder.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -12,7 +13,7 @@ class StateStack;
 class State
 {
 public:
-	State(sf::RenderWindow& window, KeyBinding& keyBindings, ResourceHolder<sf::Font, std::string>& fonts, ResourceHolder<sf::Texture, std::string>& textures, StateStack& stack);
+	State(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 	virtual ~State() = default;
 
 	//virtual void draw(sf::RenderTarget& target)	= 0;
@@ -29,21 +30,14 @@ public:
 protected:
 	void requestStackPop();
 	void requestStackPush(std::unique_ptr<State> state);
-	/*void requestStackPush();
-	void requestStackPop();
-	void requestStateClear();*/
+	void requestStateClear();
 	 
 
 protected:
-	std::vector<sf::Texture> m_textures;
-	sf::RenderWindow&		 m_windowContext; // (aggregation) - make as ptr or shared_ptr instead??
-	KeyBinding&				 m_keyBindingContext;
-	StateStack&				 m_stackContext;
+	SharedContext m_context;
+	StateStack&	  m_stackContext;
+	KeyBinding&				 m_keyBindingContext; // TODO: put in SharedContext?
 
-
-	// TODO: Create context class/struct??
-	ResourceHolder<sf::Font, std::string>&	  m_fontsContext; // make optional??
-	ResourceHolder<sf::Texture, std::string>& m_texturesContext;
 
 	// bool m_shouldQuit; ?? - if Game should terminate
 
