@@ -1,7 +1,8 @@
 #pragma once
-
 #include "../Player.h"
 #include "State.h"
+
+#include <vector>
 
 class GameState : public State
 {
@@ -18,5 +19,8 @@ private:
 private:
 	//GameObject m_player;
 	Player m_player; // TODO: make unique_ptr instead?
+
+	// Implement a Scene/World class that contains all the GameObjects??
+	std::vector<GameObject> m_gameObjects;
 };
 
