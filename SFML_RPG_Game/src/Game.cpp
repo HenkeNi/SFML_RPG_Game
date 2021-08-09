@@ -122,6 +122,7 @@ void Game::loadTextures()
 {
 	m_textures.load("main_menu_background", "assets/images/background.jpg"); // TODO: should be texture?? or image??
 	m_textures.load("player_knight", "assets/textures/knight2.jpg");
+	m_textures.load("tree", "assets/textures/tree.png");
 
 
 }
