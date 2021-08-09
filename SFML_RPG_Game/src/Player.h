@@ -1,9 +1,10 @@
 #pragma once
-#include "entities/Entity.h"
+#include "game_object/GameObject.h"
 
 #include <SFML/Graphics.hpp>
 
-class Player
+// TODO: make inherit fomr entity instead??
+class Player 
 {
 public:
 	enum class PlayerAction
@@ -13,13 +14,20 @@ public:
 
 
 public:
+	Player(const sf::Texture& texture);
+
 	void draw(sf::RenderTarget& target);
 	void update(sf::Time dt);
 
 	void handleAction(PlayerAction action); // TEST!!
 
 private:
-	Entity m_sprite;
+	GameObject m_object;
+	//Entity m_entity;
+
+	// GameObject m_sprite; // TODO: make entity pointer instead (if using Hero -> Elf, Dwarf, Human ... system)
+
+	// Player contains a Hero* 
 
 };
 

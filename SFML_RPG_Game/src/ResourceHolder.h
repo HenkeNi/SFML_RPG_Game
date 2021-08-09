@@ -4,6 +4,11 @@
 #include <memory>
 #include <string>
 
+// Forward declarations 
+class sf::Texture;
+class sf::Font;
+
+
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
@@ -24,3 +29,7 @@ private:
 };
 
 #include "ResourceHolder.inl"
+
+
+using TextureHolder_t = ResourceHolder<sf::Texture, std::string>;
+using FontHolder_t	  = ResourceHolder<sf::Font, std::string>;
