@@ -38,6 +38,9 @@ public:
 	virtual void update(sf::Vector2f mousePos) override;
 
 
+
+	void setOriginToCenter(); // Uneccessary???
+
 	//inline bool isPressed() { return m_state == ACTIVE; }
 
 
@@ -46,7 +49,8 @@ private:
 	//void			draw(sf::RenderTarget& target, sf::RenderStates states) const; -- not needed since drawable?!
 
 
-
+	void onHover();
+	void onClick();
 
 	void updateBackgroundColor();
 
