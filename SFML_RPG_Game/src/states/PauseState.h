@@ -1,6 +1,8 @@
 #pragma once
 #include "State.h"
 
+class UIObject;
+
 class PauseState : public State
 {
 public:
@@ -11,6 +13,11 @@ public:
 	virtual bool handleEvent(const sf::Event& event) override;
 
 private:
+	void initUIComponents();
+
+private:
 	sf::RectangleShape m_background;
+	std::map<std::string, std::unique_ptr<UIObject>> m_uiComponents;
+
 };
 
