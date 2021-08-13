@@ -2,6 +2,7 @@
 
 #include "components/Movement.h"
 
+#include <iostream>
 
 GameObject::GameObject(GameObject&& other) noexcept
 	: m_components{ std::move(other.m_components) }
@@ -32,36 +33,10 @@ void GameObject::removeComponent(ComponentType type)
 }
 
 
-
-
-
-
-
 void GameObject::update(sf::Time dt)
 {
-	auto moveComp{ getComponent<Movement*>(ComponentType::Movement) };
-
-	if (!moveComp)
-		return;
-
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // TODO: FIX.... (input component???)
-		moveComp->move(-1.f, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		moveComp->move(1.f, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		moveComp->move(0.f, -1.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		moveComp->move(0.f, 1.f);
-
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // TODO: FIX....
-	//	move(-1.f, 0.f);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	//	move(1.f, 0.f);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	//	move(0.f, -1.f);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	//	move(0.f , 1.f);
+	for (const auto& c : m_components)
+		c.second->update(dt);
 }
 
 
