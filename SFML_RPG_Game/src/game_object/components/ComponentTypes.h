@@ -2,5 +2,5 @@
 
 enum class ComponentType
 {
-	Rendering, Movement
+	Rendering, Movement, Animation, Input
 };
