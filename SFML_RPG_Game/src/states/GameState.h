@@ -17,8 +17,9 @@ private:
 	void initGameObjects(); // TODO: Better way??
 	
 private:
-	//GameObject m_player;
-	Player m_player; // TODO: make unique_ptr instead?
+	//Player m_player; -- REMOVE COMPLETELY??
+
+	// bool m_gameIsPaused; - needed for later??
 
 	// Implement a Scene/World class that contains all the GameObjects??
 	std::vector<GameObject> m_gameObjects;
