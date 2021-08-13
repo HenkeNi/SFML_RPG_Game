@@ -4,6 +4,15 @@
 
 
 /*
+*	Communication between components:
+*		
+*		- use friend functios and/or friend functions instead of aggregation (pointers and reference to other classes)
+* 
+* 
+*	Render Object:
+*	
+*		Instead of having multiple tree objects -> have one tree object but store multiple position it gets rendered at???
+* 
 *	Entity Management:
 * 
 *		1) Implement ESC (Entity component system)
@@ -22,6 +31,8 @@
 * 
 *	TODO:
 *		- make windwo and mouse classes
+* 
+*		- Player is not a class; instead there exist an input component that responds to key commands??
 * 
 *		- Some classe; like window, should accept a string and then read all the data from a file!
 * 
@@ -67,10 +78,9 @@
 * 
 */
 
-
-
 int main()
 {
+
 	try
 	{
 		Game game;
