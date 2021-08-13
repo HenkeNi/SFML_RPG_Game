@@ -9,6 +9,8 @@ Button::Button(const sf::Font& font, const std::string& text, const sf::Vector2f
 	m_text.setFont(font);
 	m_text.setString(text);
 	m_text.setFillColor(sf::Color::White);
+	m_text.setOutlineColor(sf::Color::Black);
+	m_text.setOutlineThickness(1.f);
 	m_text.setCharacterSize(22);
 	
 	m_text.setOrigin(m_text.getLocalBounds().left + m_text.getLocalBounds().width / 2.0f,
@@ -22,7 +24,8 @@ Button::Button(const sf::Font& font, const std::string& text, const sf::Vector2f
 
 	m_container.setFillColor(sf::Color::Green);
 	m_container.setOrigin(size.x / 2.f, size.y / 2.f);
-	m_container.setPosition(sf::Vector2f(constants::SCR_WIDTH / 2.0f, position.y));
+	m_container.setPosition(position);
+	//m_container.setPosition(sf::Vector2f(constants::SCR_WIDTH / 2.0f, position.y));
 	m_container.setSize(size);
 	m_container.setOutlineColor(sf::Color::Black);
 	m_container.setOutlineThickness(2.f);
@@ -70,12 +73,14 @@ void Button::handleEvent(const sf::Event& event)
 void Button::update(sf::Vector2f mousePos)
 {
 	m_state = IDLE;
+	m_text.setFillColor(sf::Color::White);
 	deselect();	
 
 	// Hover...
 	if (m_container.getGlobalBounds().contains(mousePos))
 	{
 		m_state = HOVER;
+		m_text.setFillColor(sf::Color::Yellow);
 
 
 		// Button clicked...
@@ -87,6 +92,26 @@ void Button::update(sf::Vector2f mousePos)
 	}
 
 	updateBackgroundColor();
+}
+
+
+
+
+
+void Button::setOriginToCenter()
+{
+	m_container.setOrigin(m_container.getLocalBounds().width / 2, m_container.getLocalBounds().height / 2);
+}
+
+
+void Button::onHover()
+{
+
+}
+
+void Button::onClick()
+{
+
 }
 
 
