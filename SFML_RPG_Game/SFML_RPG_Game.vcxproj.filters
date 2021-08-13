@@ -69,6 +69,18 @@
     <ClCompile Include="src\game_object\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\states\SettingsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_object\components\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game_object\components\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playground\animation\Animation_playground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -134,6 +146,18 @@
     <ClInclude Include="src\game_object\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\states\SettingsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_object\components\Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game_object\components\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playground\animation\Animation_playground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Sansation.ttf" />
@@ -142,13 +166,46 @@
     <Image Include="assets\images\background.jpg">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\textures\knight.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\textures\knight2.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\textures\tree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\anim2.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\anim_idle.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\profs.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\character_idle_down.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\character_idle_up.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\character_idle_right.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\sprite_sheet\character_idle_left.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pirate.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\berry_bush.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\bush.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\rock.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\tree2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\sheet_idle.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

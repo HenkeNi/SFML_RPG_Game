@@ -145,6 +145,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\playground\animation\Animation_playground.cpp" />
+    <ClCompile Include="src\game_object\components\Input.cpp" />
+    <ClCompile Include="src\game_object\components\Animation.cpp" />
+    <ClCompile Include="src\states\SettingsState.cpp" />
     <ClCompile Include="src\game_object\GameObject.cpp" />
     <ClCompile Include="src\game_object\components\Component.cpp" />
     <ClCompile Include="src\game_object\components\Rendering.cpp" />
@@ -165,6 +169,10 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\playground\animation\Animation_playground.h" />
+    <ClInclude Include="src\game_object\components\Input.h" />
+    <ClInclude Include="src\game_object\components\Animation.h" />
+    <ClInclude Include="src\states\SettingsState.h" />
     <ClInclude Include="src\game_object\GameObject.h" />
     <ClInclude Include="src\game_object\components\Component.h" />
     <ClInclude Include="src\game_object\components\ComponentTypes.h" />
@@ -192,9 +200,20 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\background.jpg" />
-    <Image Include="assets\textures\knight.jpg" />
-    <Image Include="assets\textures\knight2.jpg" />
+    <Image Include="assets\sprite_sheet\anim2.jpg" />
+    <Image Include="assets\sprite_sheet\anim_idle.jpg" />
+    <Image Include="assets\sprite_sheet\character_idle_down.jpg" />
+    <Image Include="assets\sprite_sheet\character_idle_left.jpg" />
+    <Image Include="assets\sprite_sheet\character_idle_right.jpg" />
+    <Image Include="assets\sprite_sheet\character_idle_up.jpg" />
+    <Image Include="assets\sprite_sheet\profs.png" />
+    <Image Include="assets\textures\berry_bush.png" />
+    <Image Include="assets\textures\bush.png" />
+    <Image Include="assets\textures\pirate.png" />
+    <Image Include="assets\textures\rock.png" />
+    <Image Include="assets\textures\sheet_idle.png" />
     <Image Include="assets\textures\tree.png" />
+    <Image Include="assets\textures\tree2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\window.init" />
