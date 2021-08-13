@@ -14,7 +14,9 @@ public:
 
 
 public:
-	Player(const sf::Texture& texture);
+	Player(const sf::Texture& texture, sf::RenderWindow& target, const sf::Vector2f& startPos);
+
+	//Player& operator=(const Player& other);
 
 	void draw(sf::RenderTarget& target);
 	void update(sf::Time dt);
