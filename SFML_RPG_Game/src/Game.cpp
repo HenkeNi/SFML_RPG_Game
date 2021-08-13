@@ -121,8 +121,14 @@ void Game::loadFonts()
 void Game::loadTextures()
 {
 	m_textures.load("main_menu_background", "assets/images/background.jpg"); // TODO: should be texture?? or image??
-	m_textures.load("player_knight", "assets/textures/knight2.jpg");
+	m_textures.load("player", "assets/textures/pirate.png");
+	m_textures.load("player_idle", "assets/textures/sheet_idle.png");
 	m_textures.load("tree", "assets/textures/tree.png");
+	m_textures.load("tree2", "assets/textures/tree2.png");
+	m_textures.load("bush", "assets/textures/bush.png");
+	m_textures.load("berry_bush", "assets/textures/berry_bush.png");
+	m_textures.load("rock", "assets/textures/rock.png");
+
 
 
 }
