@@ -69,18 +69,17 @@ void Movement::update(sf::Time dt)
 		static sf::Vector2f last{ 0.f, 0.f };
 
 		if (last.x > m_velocity.x) // move left?
-			//m_animationComponent->
-			std::cout << "Moving left!\n"; // TODO: just change spritesheet??
+			m_animationComponent->setCurrentFrameRow(2);
 		if (last.x < m_velocity.x) // move right?
-			std::cout << "Moving right\n";
+			m_animationComponent->setCurrentFrameRow(1);
 		if (last.y > m_velocity.y) // move up?
-			std::cout << "Moving up\n";
+			m_animationComponent->setCurrentFrameRow(4);
 		if (last.y < m_velocity.y) // move down?
-			std::cout << "Moving down\n";
+			m_animationComponent->setCurrentFrameRow(3);
 
 
 		if (last.x == m_velocity.x && last.y == m_velocity.y) // check if idle left, right?? - need to check if previous larger or smaller
-			std::cout << "Idle\n";
+			m_animationComponent->setCurrentFrameRow(0);
 
 		last = m_velocity;
 	}
