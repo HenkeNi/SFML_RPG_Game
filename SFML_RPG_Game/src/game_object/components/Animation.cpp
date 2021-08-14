@@ -12,42 +12,55 @@
 //}
 
 Animation::Animation(Rendering* render)
-	: m_renderingComponent{ render }, m_imageCount{ 1 }, m_totalDuration{ sf::seconds(0.4f) }
+	: m_renderingComponent{ render }, m_imageCount{ 3 }, m_totalDuration{ sf::seconds(1.f) }
 {
-	auto spriteSize = render->getSize();
-	m_rect.width = spriteSize.width / m_imageCount;
-	m_rect.height = spriteSize.height;
+	//auto spriteSize = render->getSize();
+	//m_rect.width = spriteSize.width / m_imageCount;
+	//m_rect.height = spriteSize.height;
 }
 
 
-
+#include <iostream>
 void Animation::update(sf::Time dt)
 {
-
 	if (!m_renderingComponent)
 		return;
+
+	static sf::Time timePerFrame = m_totalDuration / static_cast<float>(m_imageCount); // WILL IT WORK WITH OTHER CALLS?? or will it always be the same?!
+	m_totalDuration += dt;
+
+	auto spriteSize = m_renderingComponent->getSize();
+	int width = spriteSize.x / m_imageCount; // get width of a frame
+
+
+
+
+	if (m_totalDuration >= timePerFrame)
+	{ 
+		m_totalDuration -= timePerFrame;
+
+		std::cout << m_totalDuration.asSeconds() << ", " << timePerFrame.asSeconds() << '\n';
+
+		//sf::IntRect spriteRect = static_cast<sf::IntRect>(m_renderingComponent->getSize());
+
+
 		//m_renderingComponent->setTextureRect(sf::IntRect{ 250, 0, 125, 140 });
-		m_renderingComponent->setTextureRect(sf::IntRect{ 0, 0, 125, 140 });
+		//m_renderingComponent->setTextureRect(sf::IntRect{ 0, 0, 125, 140 });
+
+		if (m_currentImage < m_imageCount - 1)
+			++m_currentImage;
+		else
+			m_currentImage = 0;
+
+		std::cout << m_currentImage << '\n';
+
+		//m_renderingComponent->setTextureRect(sf::IntRect{ (int)m_currentImage * 125, 0, 125, 140 });
+		//m_renderingComponent->setTextureRect(sf::IntRect{ (int)m_currentImage * width , 0, width, spriteRect.height });
+	}
+	
+	m_renderingComponent->setTextureRect({ (int)m_currentImage * width , 0, width, (int)spriteSize.y });
 
 
-	//m_totalDuration += dt;
-	//static float frameDuration = m_totalDuration.asSeconds() / m_imageCount;
-
-	//if (m_totalDuration.asSeconds() >= frameDuration)
-	//{
-	//	m_totalDuration = sf::seconds(m_totalDuration.asSeconds()) - sf::seconds(frameDuration); // m_totalDuration.asSeconds() -= frameDuration;
-	//	++m_currentImage;
-
-	//	if (m_currentImage >= m_imageCount)
-	//	{
-	//		m_currentImage = 0;
-	//	}
-	//}
-	//m_rect.left = m_currentImage * m_rect.width;
-	////m_rect.top  = m_currentImage * m_rect.height;
-
-	//if (m_renderingComponent)
-	//	m_renderingComponent->setTextureRect(m_rect);
 }
 
 
