@@ -18,13 +18,14 @@ public:
 
 public:
 	//Animation(sf::Texture* texture, sf::Vector2u imageCount, float frameDuration);
-	Animation(Rendering* render = nullptr);
+	Animation(Rendering* render = nullptr, sf::Vector2u frameSize = sf::Vector2u(0, 0));
 
 
 
 	/*void setImageCount();
 	void setTotalDuration();*/
 
+	void setCurrentFrameRow(int row);
 
 
 
@@ -62,8 +63,12 @@ private:
 	// MULTI ARRAY OVER HOW THE SPRITES ARE LAID OUT (HOW MANY PER ROW...)
 
 
-	unsigned int m_imageCount; // number of frames in animation  TODO: rename?? numOfFrames??
-	unsigned int m_currentImage{ 0 }; // the current frame in sequence
+
+	sf::Vector2u m_frameSize;
+	sf::Vector2u m_currentFrame;
+
+	//unsigned int m_imageCount; // number of frames in animation  TODO: rename?? numOfFrames??
+	//unsigned int m_currentImage{ 0 }; // the current frame in sequence
 
 
 	sf::Time m_totalDuration;

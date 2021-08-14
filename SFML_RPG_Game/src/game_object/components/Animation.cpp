@@ -11,17 +11,73 @@
 //
 //}
 
-Animation::Animation(Rendering* render)
-	: m_renderingComponent{ render }, m_imageCount{ 3 }, m_totalDuration{ sf::seconds(1.f) }
+//Animation::Animation(Rendering* render)
+//	: m_renderingComponent{ render }, m_imageCount{ 3 }, m_totalDuration{ sf::seconds(1.f) }
+//{
+//	//auto spriteSize = render->getSize();
+//	//m_rect.width = spriteSize.width / m_imageCount;
+//	//m_rect.height = spriteSize.height;
+//}
+
+
+
+Animation::Animation(Rendering* render, sf::Vector2u frameSize)
+	: m_renderingComponent{ render }, m_frameSize{ frameSize }, m_currentFrame{ 0, 0 }, m_totalDuration{ sf::seconds(1.f) }
 {
 	//auto spriteSize = render->getSize();
 	//m_rect.width = spriteSize.width / m_imageCount;
 	//m_rect.height = spriteSize.height;
 }
 
+void Animation::setCurrentFrameRow(int row)
+{
+	m_currentFrame.y = row;
+}
+
 
 #include <iostream>
 void Animation::update(sf::Time dt)
+{
+	if (!m_renderingComponent)
+		return;
+
+	static sf::Time timePerFrame = m_totalDuration / static_cast<float>(m_frameSize.x); // WILL IT WORK WITH OTHER CALLS?? or will it always be the same?!
+	m_totalDuration += dt;
+
+	auto spriteSize = m_renderingComponent->getSize();
+	int width = spriteSize.x / m_frameSize.x; // get width of a frame
+	int height = spriteSize.y / m_frameSize.y;
+
+	if (m_totalDuration >= timePerFrame)
+	{ 
+		m_totalDuration -= timePerFrame;
+
+		std::cout << m_totalDuration.asSeconds() << ", " << timePerFrame.asSeconds() << '\n';
+
+		//sf::IntRect spriteRect = static_cast<sf::IntRect>(m_renderingComponent->getSize());
+
+
+		//m_renderingComponent->setTextureRect(sf::IntRect{ 250, 0, 125, 140 });
+		//m_renderingComponent->setTextureRect(sf::IntRect{ 0, 0, 125, 140 });
+
+		if (m_currentFrame.x < m_frameSize.x - 1)
+			++m_currentFrame.x;
+		else
+			m_currentFrame.x = 0;
+
+
+		//m_renderingComponent->setTextureRect(sf::IntRect{ (int)m_currentImage * 125, 0, 125, 140 });
+		//m_renderingComponent->setTextureRect(sf::IntRect{ (int)m_currentImage * width , 0, width, spriteRect.height });
+	}
+	
+	m_renderingComponent->setTextureRect({ (int)m_currentFrame.x * width , (int)m_currentFrame.y * height, width, height });
+	//m_renderingComponent->setTextureRect({ (int)m_currentFrame.x * width , 0, width, (int)spriteSize.y });
+}
+
+
+
+/*
+* void Animation::update(sf::Time dt)
 {
 	if (!m_renderingComponent)
 		return;
@@ -59,9 +115,16 @@ void Animation::update(sf::Time dt)
 	}
 	
 	m_renderingComponent->setTextureRect({ (int)m_currentImage * width , 0, width, (int)spriteSize.y });
-
-
 }
+
+*/
+
+
+
+
+
+
+
 
 
 //void Animation::update(sf::Time dt)
