@@ -14,7 +14,10 @@ public:
 	virtual void update(sf::Time dt) override;
 
 	inline sf::Sprite&   getSprite() { return m_sprite; }
-	inline sf::FloatRect getSize()   { return m_sprite.getLocalBounds(); }
+	inline sf::Vector2u  getSize()   { return m_sprite.getTexture()->getSize(); }
+
+	//inline sf::FloatRect getSize()   { return m_sprite.getTexture()->getSize(); }
+
 
 	void setTextureRect(const sf::IntRect& rect);
 
