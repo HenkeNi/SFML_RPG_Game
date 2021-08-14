@@ -93,8 +93,8 @@ void GameState::initGameObjects() // USe a factory instead??
 
 	// PLAYER
 	GameObject player;
-	player.addComponent(ComponentType::Rendering, std::make_unique<Rendering>(m_context.m_texturesPtr->getResource("player_idle"), *m_context.m_windowPtr, sf::Vector2f{ 190.f, 220.f }));
-	player.addComponent(ComponentType::Animation, std::make_unique<Animation>(player.getComponent<Rendering*>(ComponentType::Rendering)));
+	player.addComponent(ComponentType::Rendering, std::make_unique<Rendering>(m_context.m_texturesPtr->getResource("player_sheet"), *m_context.m_windowPtr, sf::Vector2f{ 290.f, 220.f }));
+	player.addComponent(ComponentType::Animation, std::make_unique<Animation>(player.getComponent<Rendering*>(ComponentType::Rendering), sf::Vector2u{ 3, 5 }));
 	player.addComponent(ComponentType::Movement,  std::make_unique<Movement>(player.getComponent<Rendering*>(ComponentType::Rendering), player.getComponent<Animation*>(ComponentType::Animation)));
 	player.addComponent(ComponentType::Input,     std::make_unique<Input>(player.getComponent<Movement*>(ComponentType::Movement)));
 	
