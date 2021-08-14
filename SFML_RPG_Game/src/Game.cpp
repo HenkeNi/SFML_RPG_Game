@@ -122,7 +122,11 @@ void Game::loadTextures()
 {
 	m_textures.load("main_menu_background", "assets/images/background.jpg"); // TODO: should be texture?? or image??
 	m_textures.load("player", "assets/textures/pirate.png");
-	m_textures.load("player_idle", "assets/textures/sheet_idle.png");
+	
+	//m_textures.load("player_idle", "assets/textures/sheet_idle.png");
+	//m_textures.load("player_sheet", "assets/textures/pirate_animations.png");
+	m_textures.load("player_sheet", "assets/textures/pirate_sheet.png");
+
 	m_textures.load("tree", "assets/textures/tree.png");
 	m_textures.load("tree2", "assets/textures/tree2.png");
 	m_textures.load("bush", "assets/textures/bush.png");
