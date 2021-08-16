@@ -2,6 +2,7 @@
 #include "PauseState.h"
 
 #include "../game_object/components/Animation.h"
+#include "../game_object/components/Collider.h"
 #include "../game_object/components/Input.h"
 #include "../game_object/components/Movement.h"
 #include "../game_object/components/Rendering.h"
@@ -84,11 +85,19 @@ void GameState::initGameObjects() // USe a factory instead??
 
 	GameObject rock;
 	rock.addComponent(ComponentType::Rendering, std::make_unique<Rendering>(m_context.m_texturesPtr->getResource("rock"), *m_context.m_windowPtr, sf::Vector2f{ 120.f, 200.f }));
+	rock.addComponent(ComponentType::Collider, std::make_unique<Collider>(rock.getComponent<Rendering*>(ComponentType::Rendering), 0.0f));
 	m_gameObjects.push_back(std::move(rock));
 	
 	GameObject rock2;
 	rock2.addComponent(ComponentType::Rendering, std::make_unique<Rendering>(m_context.m_texturesPtr->getResource("rock"), *m_context.m_windowPtr, sf::Vector2f{ 450.f, 120.f }));
+	rock2.addComponent(ComponentType::Collider, std::make_unique<Collider>(rock2.getComponent<Rendering*>(ComponentType::Rendering), 0.0f));
 	m_gameObjects.push_back(std::move(rock2));
+
+	GameObject chest;
+	chest.addComponent(ComponentType::Rendering, std::make_unique<Rendering>(m_context.m_texturesPtr->getResource("chest"), *m_context.m_windowPtr, sf::Vector2f{ 270.f, 90.f }));
+	//chest.addComponent(ComponentType::Collider,  std::make_unique<Collider>(chest.getComponent<Rendering*>(ComponentType::Rendering)->getSprite(), 1.0f));
+	chest.addComponent(ComponentType::Collider, std::make_unique<Collider>(chest.getComponent<Rendering*>(ComponentType::Rendering), 1.0f));
+	m_gameObjects.push_back(std::move(chest));
 
 
 	// PLAYER
@@ -97,9 +106,7 @@ void GameState::initGameObjects() // USe a factory instead??
 	player.addComponent(ComponentType::Animation, std::make_unique<Animation>(player.getComponent<Rendering*>(ComponentType::Rendering), sf::Vector2u{ 3, 5 }));
 	player.addComponent(ComponentType::Movement,  std::make_unique<Movement>(player.getComponent<Rendering*>(ComponentType::Rendering), player.getComponent<Animation*>(ComponentType::Animation)));
 	player.addComponent(ComponentType::Input,     std::make_unique<Input>(player.getComponent<Movement*>(ComponentType::Movement)));
-	
+	//player.addComponent(ComponentType::Collider,  std::make_unique<Collider>(player.getComponent<Rendering*>(ComponentType::Rendering)->getSprite(), 1.0f));
+	player.addComponent(ComponentType::Collider, std::make_unique<Collider>(player.getComponent<Rendering*>(ComponentType::Rendering), 1.0f));
 	m_gameObjects.push_back(std::move(player));
-
-
-
 }
