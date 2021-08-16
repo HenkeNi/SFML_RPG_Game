@@ -81,6 +81,12 @@
     <ClCompile Include="src\playground\animation\Animation_playground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\game_object\components\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\playground\collision\Collision_playground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -158,6 +164,12 @@
     <ClInclude Include="src\playground\animation\Animation_playground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game_object\components\Collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\playground\collision\Collision_playground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\fonts\Sansation.ttf" />
@@ -206,6 +218,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\textures\sheet_idle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\barrel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\chest.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\palm_tree.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\simple_ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\walk_left.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pirate_animations.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\pirate_sheet.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

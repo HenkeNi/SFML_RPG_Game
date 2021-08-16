@@ -145,6 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\playground\collision\Collision_playground.cpp" />
+    <ClCompile Include="src\game_object\components\Collider.cpp" />
     <ClCompile Include="src\playground\animation\Animation_playground.cpp" />
     <ClCompile Include="src\game_object\components\Input.cpp" />
     <ClCompile Include="src\game_object\components\Animation.cpp" />
@@ -169,6 +171,8 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\playground\collision\Collision_playground.h" />
+    <ClInclude Include="src\game_object\components\Collider.h" />
     <ClInclude Include="src\playground\animation\Animation_playground.h" />
     <ClInclude Include="src\game_object\components\Input.h" />
     <ClInclude Include="src\game_object\components\Animation.h" />
@@ -207,13 +211,20 @@
     <Image Include="assets\sprite_sheet\character_idle_right.jpg" />
     <Image Include="assets\sprite_sheet\character_idle_up.jpg" />
     <Image Include="assets\sprite_sheet\profs.png" />
+    <Image Include="assets\textures\barrel.png" />
     <Image Include="assets\textures\berry_bush.png" />
     <Image Include="assets\textures\bush.png" />
+    <Image Include="assets\textures\chest.png" />
     <Image Include="assets\textures\pirate.png" />
+    <Image Include="assets\textures\pirate_animations.png" />
+    <Image Include="assets\textures\pirate_sheet.png" />
+    <Image Include="assets\textures\palm_tree.png" />
     <Image Include="assets\textures\rock.png" />
     <Image Include="assets\textures\sheet_idle.png" />
+    <Image Include="assets\textures\simple_ship.png" />
     <Image Include="assets\textures\tree.png" />
     <Image Include="assets\textures\tree2.png" />
+    <Image Include="assets\textures\walk_left.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\window.init" />
