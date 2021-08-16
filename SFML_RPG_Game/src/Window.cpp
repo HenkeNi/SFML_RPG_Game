@@ -10,15 +10,15 @@ Window::Window(const std::string& filename)
 }
 
 
-void Window::close() 
+void Window::clear(sf::Color color)
 {
-	m_window.close();
+	m_window.clear(color);
 }
 
 
-void Window::clear()
+void Window::draw(sf::Drawable& drawable)
 {
-	m_window.clear();
+	m_window.draw(drawable);
 }
 
 
@@ -28,14 +28,34 @@ void Window::display()
 }
 
 
-void Window::draw()
+
+void Window::update()
 {
-	/*m_window.draw()*/
+	sf::Event event;
+
+	while (m_window.pollEvent(event))
+	{
+		if (event.type == sf::Event::Closed)
+			close();
+	}
 }
+
+
+void Window::close()
+{
+	m_window.close();
+}
+
 
 bool Window::pollEvent(sf::Event& event)
 {
 	return m_window.pollEvent(event);
+}
+
+
+void Window::enableVerticalSync(bool enable)
+{
+	m_window.setVerticalSyncEnabled(enable);
 }
 
 void Window::initWindow(const std::string& filename)

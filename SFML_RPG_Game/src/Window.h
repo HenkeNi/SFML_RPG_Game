@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
 
 class Window
@@ -8,14 +8,19 @@ class Window
 public:
 	Window(const std::string& filename);
 
-	void		close();
-	void		clear();
+
+	void		clear(sf::Color color);
+	void		draw(sf::Drawable& drawable);
 	void		display();
 
-	void		draw();
+	void		update();
+	void		close();
 
 	bool		pollEvent(sf::Event& event);
-	inline bool isOpen() const { return m_window.isOpen(); }
+	void		enableVerticalSync(bool enable);
+
+	inline bool			isOpen() const { return m_window.isOpen(); }
+	inline sf::Vector2u getSize() { return m_window.getSize(); }
 
 private:
 	void initWindow(const std::string& filename);
