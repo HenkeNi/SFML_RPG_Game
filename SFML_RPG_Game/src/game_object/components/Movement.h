@@ -30,7 +30,7 @@ public:
 
 
 	// FOR TEST PURPOSE
-	inline sf::Vector2f getPosition() const { return m_velocity; }
+	inline sf::Vector2f getVelocity() const { return m_velocity; }
 
 
 	void setMovementSpeed(float speed);

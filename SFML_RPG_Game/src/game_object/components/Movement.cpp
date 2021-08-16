@@ -78,7 +78,7 @@ void Movement::update(sf::Time dt)
 			m_animationComponent->setCurrentFrameRow(3);
 
 
-		if (last.x == m_velocity.x && last.y == m_velocity.y) // check if idle left, right?? - need to check if previous larger or smaller
+		if (last.x == m_velocity.x && last.y == m_velocity.y) // check if idle left, right?? - need to check if previous larger or smaller (store last movement as enum??) or check current Frame Row?! 
 			m_animationComponent->setCurrentFrameRow(0);
 
 		last = m_velocity;
