@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../ui_objects/UIObject.h"
-#include "../ui_objects/Button.h"
+#include "Button.h"
 #include "State.h"
+#include "UIObject.h"
 
 #include <map>
 #include <memory>
@@ -13,22 +13,14 @@ public:
 	MainMenuState(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 
 	virtual void draw()								 override;
-	virtual bool update(sf::Time dt)				 override;
-	virtual bool handleEvent(const sf::Event& event) override;
-
+	virtual void update(sf::Time dt)				 override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 private:
-	void initFonts(); // TEST...
-
 	void initUIComponents();
 
-
 private:
-	sf::Sprite m_background;
-
-
-	std::map<std::string, std::unique_ptr<UIObject>> m_uiComponents;
-	//std::vector<std::unique_ptr<UIObject>> m_uiComponents; // Make own class, or map instead?? 
-
+	std::map<std::string, std::unique_ptr<UIObject>> m_uiComponents; // TODO: Make a UIHandlerClass instead??
+	sf::Clock m_buttonPressDelay;
 };
 

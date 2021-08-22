@@ -1,7 +1,8 @@
 #include "MainMenuState.h"
-#include "SettingsState.h"
 #include "../ui_objects/Button.h"
 #include "../ui_objects/Label.h"
+#include "Background.h"
+#include "SettingsState.h"
 
 #include <iostream>
 
@@ -10,81 +11,48 @@ MainMenuState::MainMenuState(SharedContext context, KeyBinding& keyBindings, Sta
 	: State{ context, keyBindings, stack }
 {
 	initUIComponents();
+	m_buttonPressDelay.restart();
 }
 
 
 void MainMenuState::draw()
 {
-	m_context.m_windowPtr->draw(m_background);
-
 	for (auto itr{ m_uiComponents.begin() }; itr != m_uiComponents.end(); ++itr)
 		m_context.m_windowPtr->draw(*itr->second);
 }
 
 
-bool MainMenuState::update(sf::Time dt)
+void MainMenuState::update(sf::Time dt)
 {
-	updateMousePositions();
+	updateMousePosition();
 
-	//for (const auto& comp : m_uiComponents)
-	//	comp->update(m_mousePosView);
+	for (const auto& comp : m_uiComponents)
+		comp.second->update(m_mousePosView);
 
-	for (auto itr{ m_uiComponents.begin() }; itr != m_uiComponents.end(); ++itr)
-		itr->second->update(m_mousePosView);
-
-
+		/*if (comp.second->isSelectable() && comp.second->isSelected())
+			comp.second->performAction();*/
 
 
 
-
-
-	// TODO: Check if is selectable... (put code in own function??)
-
-	for (auto itr{ m_uiComponents.begin() }; itr != m_uiComponents.end(); ++itr)
+	// small button press delay when state displayed
+	if (m_buttonPressDelay.getElapsedTime() > sf::seconds(0.5f))
 	{
-		if (itr->second->isSelectable())
-		{
-			// TODO: this component can be pressed??!?
-		}
-	}
-
-
-
-	// FIX: put in function or handle differently (FIX THIS!!!!) PUT IN HANDLEEVENT???
-	if (m_uiComponents["START_GAME"]->isSelected()) // TOOD: start game....
-	{
-		requestStackPop();
-		return false;
-	}
-
-
-
-	if (m_uiComponents["SETTINGS"]->isSelected())
-		requestStackPush(std::make_unique<SettingsState>(SharedContext{ m_context.m_windowPtr,  m_context.m_texturesPtr, m_context.m_fontsPtr }, m_keyBindingContext, m_stackContext));
-
-
-	if (m_uiComponents["QUIT"]->isSelected())
-		; // Request clear stack??
-
-
-	return false;
+		//// FIX: put in function or handle differently (FIX THIS!!!!) PUT IN HANDLEEVENT???
+		if (m_uiComponents["START_GAME"]->isSelected())
+			requestStackPop();
+		else if (m_uiComponents["SETTINGS"]->isSelected())
+			requestStackPush(std::make_unique<SettingsState>(m_context, m_keyBindingContext, m_stackContext));
+		else if (m_uiComponents["QUIT"]->isSelected())
+			m_context.m_windowPtr->close(); // Request clear stack?? stateClear..?
+	}	
 }
 
 
-bool MainMenuState::handleEvent(const sf::Event& event)
+void MainMenuState::handleEvent(const sf::Event& event)
 {
-	return false;
+	for (const auto& comp : m_uiComponents)
+		comp.second->handleEvent(event);
 }
-
-
-
-//void MainMenuState::initFonts()
-//{
-//	//if ()
-//}
-
-
-
 
 
 void MainMenuState::initUIComponents()
@@ -96,8 +64,10 @@ void MainMenuState::initUIComponents()
 	float buttonHeight{ 65.f };
 
 	// Background
-	m_background.setTexture(m_context.m_texturesPtr->getResource("main_menu_background"));
-	m_background.setScale({ 1.5f, 1.5f });
+	Background background{ m_context.m_texturesPtr->getResource("main_menu_background"), {1.5f, 1.5f} };
+	m_uiComponents.insert(std::make_pair("BACKGROUND", std::make_unique<Background>(background)));
+	//m_background.setTexture(m_context.m_texturesPtr->getResource("main_menu_background"));
+	//m_background.setScale({ 1.5f, 1.5f });
 	
 
 	// Title
