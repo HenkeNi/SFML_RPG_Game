@@ -44,7 +44,7 @@ void Animation::update(sf::Time dt)
 	static sf::Time timePerFrame = m_totalDuration / static_cast<float>(m_frameSize.x); // WILL IT WORK WITH OTHER CALLS?? or will it always be the same?!
 	m_totalDuration += dt;
 
-	auto spriteSize = m_renderingComponent->getSize();
+	auto spriteSize = m_renderingComponent->getTextureSize();
 	int width = spriteSize.x / m_frameSize.x; // get width of a frame
 	int height = spriteSize.y / m_frameSize.y;
 
@@ -72,6 +72,13 @@ void Animation::update(sf::Time dt)
 	
 	m_renderingComponent->setTextureRect({ (int)m_currentFrame.x * width , (int)m_currentFrame.y * height, width, height });
 	//m_renderingComponent->setTextureRect({ (int)m_currentFrame.x * width , 0, width, (int)spriteSize.y });
+}
+
+
+
+void Animation::handleEvent(const sf::Event& event)
+{
+
 }
 
 

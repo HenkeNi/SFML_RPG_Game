@@ -31,6 +31,7 @@ public:
 
 	//void update(float dt);
 	virtual void update(sf::Time dt) override;
+	virtual void handleEvent(const sf::Event& event) override; 
 
 
 	// TEST
