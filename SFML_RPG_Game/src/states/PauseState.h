@@ -9,8 +9,8 @@ public:
 	PauseState(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 
 	virtual void draw()								 override;
-	virtual bool update(sf::Time dt)				 override;
-	virtual bool handleEvent(const sf::Event& event) override;
+	virtual void update(sf::Time dt)				 override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 private:
 	void initUIComponents();
@@ -19,5 +19,6 @@ private:
 	sf::RectangleShape m_background;
 	std::map<std::string, std::unique_ptr<UIObject>> m_uiComponents;
 
+	bool m_popState{ false };
 };
 
