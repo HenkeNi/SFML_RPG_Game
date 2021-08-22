@@ -17,6 +17,7 @@ public:
 	bool checkCollision(Collider& other);
 
 	virtual void update(sf::Time dt) override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 	inline sf::Vector2f getPosition() const { return m_sprite.getPosition(); }
 	sf::IntRect getSize() const; 

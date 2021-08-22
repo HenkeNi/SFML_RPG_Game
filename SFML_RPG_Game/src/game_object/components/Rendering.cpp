@@ -6,6 +6,8 @@ Rendering::Rendering(const sf::Texture& texture, sf::RenderWindow& target, const
 	: m_sprite{ texture }, m_target{ target }
 {
 	//m_sprite.setOrigin(sf::Vector2f{ 125.f / 2.f, 140.f / 2.f }); // FIX!!
+	//m_sprite.setOrigin(getRectSize().width / 2.f, getRectSize().height / 2.f);
+	m_sprite.setOrigin({ 62.5f, 70.f }); // TODO: Fix...
 	m_sprite.setPosition(startPos);
 
 }
@@ -53,6 +55,14 @@ void Rendering::update(sf::Time dt)
 	//draw();
 	//m_sprite.rotate(10.f);
 }
+
+
+
+void Rendering::handleEvent(const sf::Event& event)
+{
+
+}
+
 
 
 void Rendering::setTextureRect(const sf::IntRect& rect)

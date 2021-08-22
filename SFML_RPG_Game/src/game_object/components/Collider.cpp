@@ -83,7 +83,7 @@ bool Collider::checkCollision(Collider& other)
 	//auto currentHalfSize{ getHalfSize() };
 		
 	//std::cout << "OtherSize: " << otherHalfSize.x << ", " << otherHalfSize.y << "... Size: " << currentHalfSize.x << "; " << currentHalfSizes.y << '\n';
-	std::cout << "Size: " << currentHalfSize.x << ", " << currentHalfSize.y << '\n';
+	//std::cout << "Size: " << currentHalfSize.x << ", " << currentHalfSize.y << '\n';
 
 
 
@@ -169,6 +169,11 @@ void Collider::update(sf::Time dt)
 	// TODO: call collision check?? 
 }
 
+
+void Collider::handleEvent(const sf::Event& event)
+{
+
+}
 
 
 sf::IntRect Collider::getSize() const 

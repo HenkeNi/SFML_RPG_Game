@@ -20,9 +20,10 @@ public:
 	//void addShape(sf::RectangleShape* shape);
 
 	virtual void update(sf::Time dt) override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 	inline sf::Sprite&   getSprite()   { return m_sprite; }
-	inline sf::Vector2u  getSize()     { return m_sprite.getTexture()->getSize(); }
+	inline sf::Vector2u  getTextureSize()     { return m_sprite.getTexture()->getSize(); }
 	inline sf::IntRect  getRectSize() const { return m_partDrawn; }
 	//inline sf::Vector2f  getPosition() { return m_sprite.getPosition(); }
 	//inline sf::FloatRect getSize()   { return m_sprite.getTexture()->getSize(); }

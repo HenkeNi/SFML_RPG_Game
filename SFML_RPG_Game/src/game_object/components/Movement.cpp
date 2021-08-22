@@ -69,13 +69,13 @@ void Movement::update(sf::Time dt)
 		static sf::Vector2f last{ 0.f, 0.f };
 
 		if (last.x > m_velocity.x) // move left?
-			m_animationComponent->setCurrentFrameRow(2);
-		if (last.x < m_velocity.x) // move right?
-			m_animationComponent->setCurrentFrameRow(1);
-		if (last.y > m_velocity.y) // move up?
-			m_animationComponent->setCurrentFrameRow(4);
-		if (last.y < m_velocity.y) // move down?
 			m_animationComponent->setCurrentFrameRow(3);
+		if (last.x < m_velocity.x) // move right?
+			m_animationComponent->setCurrentFrameRow(2);
+		if (last.y > m_velocity.y) // move up?
+			m_animationComponent->setCurrentFrameRow(5);
+		if (last.y < m_velocity.y) // move down?
+			m_animationComponent->setCurrentFrameRow(4);
 
 
 		if (last.x == m_velocity.x && last.y == m_velocity.y) // check if idle left, right?? - need to check if previous larger or smaller (store last movement as enum??) or check current Frame Row?! 
@@ -108,6 +108,10 @@ void Movement::update(sf::Time dt)
 }
 
 
+void Movement::handleEvent(const sf::Event& event)
+{
+
+}
 
 
 

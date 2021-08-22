@@ -9,6 +9,7 @@ public:
 	Input(Movement* movement);
 
 	virtual void update(sf::Time dt) override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 private:
 	Movement* m_movementComponent;

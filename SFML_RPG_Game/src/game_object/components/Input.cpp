@@ -23,3 +23,10 @@ void Input::update(sf::Time dt)
 		m_movementComponent->accelerate(0.f, 1.f);
 
 }
+
+
+
+void Input::handleEvent(const sf::Event& event)
+{
+
+}

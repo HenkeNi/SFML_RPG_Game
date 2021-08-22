@@ -36,6 +36,7 @@ public:
 	void setMovementSpeed(float speed);
 
 	virtual void update(sf::Time dt) override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 private:
 	Animation*		m_animationComponent;
