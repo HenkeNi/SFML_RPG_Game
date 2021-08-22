@@ -24,20 +24,24 @@ private:
 	//void initKeyBindings(); // TODO: FIX other way??
 	void initWindow(const std::string& filename);
 	void initStates();
+	void initStatistics();
 
 	// TODO: Combine -> loadResources();
 	void loadFonts();
 	void loadTextures();
+
+	void updateStatistics(sf::Time elapsedTime);
+
 
 private:
 	//Window m_window;
 	sf::RenderWindow m_window;
 	StateStack		 m_stateStack;
 	KeyBinding		 m_keyBindings;
+	TextureHolder_t  m_textures;
+	FontHolder_t	 m_fonts;
 
-	// TODO: Textures and fonts??
-	TextureHolder_t m_textures;
-	FontHolder_t	m_fonts;
+	sf::Text		 m_statisticsText; // MOVE to Camera component??
 
 };
 

@@ -17,11 +17,10 @@ Game::Game()
 	//windowSettings.antialiasingLevel = 0;
 	//m_window = sf::RenderWindow{ sf::VideoMode{ constants::SCR_WIDTH, constants::SCR_HEIGHT }, "SFML RPG", sf::Style::Default, windowSettings };
 
-
 	loadFonts();
 	loadTextures();
 	initStates();
-
+	initStatistics();
 }
 
 // run the game
@@ -41,6 +40,7 @@ void Game::run()
 			update(constants::TIME_PER_FRAME);
 		}
 		render();
+		updateStatistics(timeSinceLastUpdate);
 	}
 }
 
@@ -70,7 +70,8 @@ void Game::render()
 	m_window.clear();
 
 	m_stateStack.draw();
-	
+	m_window.draw(m_statisticsText);
+
 	m_window.display();
 }
 
@@ -112,6 +113,15 @@ void Game::initStates()
 }
 
 
+void Game::initStatistics()
+{
+	m_statisticsText.setFont(m_fonts.getResource("main-font"));
+	m_statisticsText.setPosition(5.f, 5.f);
+	m_statisticsText.setCharacterSize(15);
+	m_statisticsText.setFillColor(sf::Color::Yellow);
+}
+
+
 void Game::loadFonts()
 {
 	m_fonts.load("main-font", "assets/fonts/Sansation.ttf");
@@ -135,4 +145,24 @@ void Game::loadTextures()
 
 
 
+}
+
+
+
+void Game::updateStatistics(sf::Time elapsedTime)
+{
+	static sf::Time updateTime;
+	static int frames;
+
+	updateTime += elapsedTime;
+	++frames;
+
+	if (updateTime > sf::seconds(1.0f))
+	{
+		m_statisticsText.setString("Fps/sec: " + std::to_string(frames) + "\n" +
+			"Time/update: " + std::to_string(updateTime.asMicroseconds() / frames) + "us");
+
+		updateTime -= sf::seconds(1.0f);
+		frames = 0;
+	}
 }
