@@ -1,20 +1,17 @@
 #include "StateStack.h"
 
 
-
 void StateStack::update(sf::Time dt)
 {
 	if (!m_states.empty())
-		m_states.top()->update(dt);
-	else
-		; // TODO: Close window otherwise??
+		m_states.top()->update(dt);	// update the top state in stack 
 }
 
 
 void StateStack::draw()
 {
 	if (!m_states.empty())
-		m_states.top()->draw();
+		m_states.top()->draw(); // draw the top state in stack
 }
 
 
