@@ -21,21 +21,19 @@ void SettingsState::draw()
 }
 
 
-bool SettingsState::update(sf::Time dt)
+void SettingsState::update(sf::Time dt)
 {
-	updateMousePositions();
+	updateMousePosition();
 
 	for (auto itr{ m_uiComponents.begin() }; itr != m_uiComponents.end(); ++itr)
 		itr->second->update(m_mousePosView);
 
 
-	return false;
 }
 
 
-bool SettingsState::handleEvent(const sf::Event& event)
+void SettingsState::handleEvent(const sf::Event& event)
 {
-	return false;
 }
 
 

@@ -9,8 +9,8 @@ public:
 	SettingsState(SharedContext context, KeyBinding& keyBindings, StateStack& stack);
 
 	virtual void draw()								 override;
-	virtual bool update(sf::Time dt)				 override;
-	virtual bool handleEvent(const sf::Event& event) override;
+	virtual void update(sf::Time dt)				 override;
+	virtual void handleEvent(const sf::Event& event) override;
 
 private:
 	void initUIComponents();
